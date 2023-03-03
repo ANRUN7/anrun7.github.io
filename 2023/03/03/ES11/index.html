@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>ES11的特性 | 十一笔画z</title><meta name="author" content="Anrun7"><meta name="copyright" content="Anrun7"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、class类的私有变量在ES11 之前js是没有class类的私有变量的概念, 我们程序员一般使用 ‘_’ 开始符号代表了私有变量,列如 _name 代表了class类中name属性为私有的,而Typescript使用private 前缀代表私有属性或者方法. ES11 中使用# 代表类中的属性为私有变量. 12345678910111213daclass Dog &amp;#123;  #name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES11的特性">
+<meta property="og:url" content="http://example.com/2023/03/03/ES11/index.html">
+<meta property="og:site_name" content="十一笔画z">
+<meta property="og:description" content="1、class类的私有变量在ES11 之前js是没有class类的私有变量的概念, 我们程序员一般使用 ‘_’ 开始符号代表了私有变量,列如 _name 代表了class类中name属性为私有的,而Typescript使用private 前缀代表私有属性或者方法. ES11 中使用# 代表类中的属性为私有变量. 12345678910111213daclass Dog &amp;#123;  #name">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-03-03T06:56:55.607Z">
+<meta property="article:modified_time" content="2023-03-03T06:59:11.490Z">
+<meta property="article:author" content="Anrun7">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/03/ES11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ES11的特性',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-03 14:59:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/mapDepot/"><i class="fa-fw fas fa-cart-plus"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images%5CmapDepot%5CmapDepot15.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="十一笔画z"><span class="site-name">十一笔画z</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/mapDepot/"><i class="fa-fw fas fa-cart-plus"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ES11的特性</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-03T06:56:55.607Z" title="发表于 2023-03-03 14:56:55">2023-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-03T06:59:11.490Z" title="更新于 2023-03-03 14:59:11">2023-03-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ES11的特性"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1、class类的私有变量"><a href="#1、class类的私有变量" class="headerlink" title="1、class类的私有变量"></a>1、class类的私有变量</h3><p>在ES11 之前js是没有class类的私有变量的概念, 我们程序员一般使用 ‘_’ 开始符号代表了私有变量,列如 _name 代表了class类中name属性为私有的,而Typescript使用private 前缀代表私有属性或者方法. ES11 中使用# 代表类中的属性为私有变量.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">da<span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">  #name = <span class="string">&#x27;owen&#x27;</span></span><br><span class="line">  age = <span class="number">18</span></span><br><span class="line">  <span class="title function_">getInfo</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`dog name is <span class="subst">$&#123;<span class="variable language_">this</span>.#name&#125;</span> age is <span class="subst">$&#123;<span class="variable language_">this</span>.age&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dogInstance = <span class="keyword">new</span> <span class="title class_">Dog</span>() <span class="comment">// dog name is owen age is 18</span></span><br><span class="line"></span><br><span class="line">dogInstance.<span class="title function_">getInfo</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dogInstance.#name) <span class="comment">// Uncaught SyntaxError: Private field</span></span><br><span class="line"><span class="string">&#x27;#name&#x27;</span> must be declared <span class="keyword">in</span> an enclosing <span class="keyword">class</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、Promise-allSettled"><a href="#2、Promise-allSettled" class="headerlink" title="2、Promise.allSettled"></a>2、Promise.allSettled</h3><p>ES6引入Promise以来, Promise支持的组合型传入类型的方法只有: promise.all 和promise.race , 而这两种方法都会因为 当promise被reject或者报错的时候发生短路,导致之后的promise不会执行. 引入了Promise.allSettled之后,无论promise数组中任何一个promise状态是reslove还是reject,都会执行完毕,最后返回一个状态数组.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">reslove,reject</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="title function_">reslove</span>(<span class="string">&#x27;promise success&#x27;</span>)</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">reslove,reject</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&#x27;promise fail&#x27;</span>)</span><br><span class="line">  &#125;,<span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proResult = <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([promise1,promise2]).<span class="title function_">then</span>(<span class="function"><span class="params">data</span>=&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  &#123; status: &#x27;fulfilled&#x27;, value: &#x27;promise success&#x27; &#125;,</span></span><br><span class="line"><span class="comment">  &#123; status: &#x27;rejected&#x27;, reason: &#x27;promise fail&#x27; &#125;</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="3、String-prototye-matchAll"><a href="#3、String-prototye-matchAll" class="headerlink" title="3、String.prototye.matchAll"></a>3、String.prototye.matchAll</h3><p>语法: str.machAll(reg)<br>给定一个字符串和一个正则表达式,machAll可以返回所有的与该字符串匹配正则结果的迭代器.下面是mach() 和 machAll() 的对比</p>
+<ul>
+<li>注意:   Reg正则必须是设置了全局模式g的形式，否则会抛出异常TypeError</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/name(\d?)/g</span></span><br><span class="line"><span class="keyword">const</span> nameGroup = <span class="string">&#x27;name1name2,name3&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nameGroup.<span class="title function_">match</span>(reg))</span><br><span class="line"> <span class="comment">// [ &#x27;name1&#x27;, &#x27;name2&#x27;, &#x27;name3&#x27; ]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(nameGroup.<span class="title function_">matchAll</span>(reg))</span><br><span class="line"><span class="comment">// Object [RegExp String Iterator] &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(...nameGroup.<span class="title function_">matchAll</span>(reg))</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  &#x27;name1&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;1&#x27;,</span></span><br><span class="line"><span class="comment">  index: 0,</span></span><br><span class="line"><span class="comment">  input: &#x27;name1name2,name3&#x27;,</span></span><br><span class="line"><span class="comment">  groups: undefined</span></span><br><span class="line"><span class="comment">] [</span></span><br><span class="line"><span class="comment">  &#x27;name2&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;2&#x27;,</span></span><br><span class="line"><span class="comment">  index: 5,</span></span><br><span class="line"><span class="comment">  input: &#x27;name1name2,name3&#x27;,</span></span><br><span class="line"><span class="comment">  groups: undefined</span></span><br><span class="line"><span class="comment">] [</span></span><br><span class="line"><span class="comment">  &#x27;name3&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;3&#x27;,</span></span><br><span class="line"><span class="comment">  index: 11,</span></span><br><span class="line"><span class="comment">  input: &#x27;name1name2,name3&#x27;,</span></span><br><span class="line"><span class="comment">  groups: undefined</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="4、BigInt任意精度的整数"><a href="#4、BigInt任意精度的整数" class="headerlink" title="4、BigInt任意精度的整数"></a>4、BigInt任意精度的整数</h3><p>JavaScript对数字大小有严格的固定限制范围, 当大于2的53次方的时候精度就会消失,举个简单的例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>**<span class="number">53</span>) <span class="comment">// 9007199254740992</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>**<span class="number">53</span> === <span class="number">2</span>**<span class="number">53</span> + <span class="number">1</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Biglnt是一种新的数据类型,所以现在js有八种数据类型了 分别是:</p>
+<ul>
+<li>number</li>
+<li>string</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol</li>
+<li>object</li>
+<li>bigInt</li>
+</ul>
+<p>BigInt 产生原因是为了解决js中超过2**53 - 1 的整数精度失效问题. 要创建BigInt只需要在数字的末尾加上一个 ‘n’ 即可. 如下示例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">constbigNumber = <span class="number">900719925474099211n</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bigNumber + <span class="number">1n</span>) <span class="comment">// 900719925474099212n</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bigNumber + <span class="number">1</span>)</span><br><span class="line"> <span class="comment">// TypeError: Cannot mix BigInt and other types, use explicit conversions</span></span><br></pre></td></tr></table></figure>
+<p>注意BigInt 类型无法跟Number类型互相运算.</p>
+<h3 id="5、空值合并运算符"><a href="#5、空值合并运算符" class="headerlink" title="5、空值合并运算符??"></a>5、空值合并运算符??</h3><p>对TypeScript了解的人,大概很早就开始使用??号符号. 在ES11 新特性之后,?? 号符号可以在我们直接书写js时候使用. 当我们要判断某个对象的属性不存在那么就取另外一个对象的时候,列如以下情况:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span> || <span class="number">3</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">b</span> || <span class="number">3</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>如果我们只是想判断obj对象中有那个属性然后取值属性值,没有的话就取值为3 ,这里就会需要多余的判断. 为了避免这种运算,我们使用?? 运算符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">a</span> ?? <span class="number">3</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">b</span> ?? <span class="number">3</span>) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>解析: 空值运算符检查所有值的属性是否为undefined或null。如果不是null或undefined，它将返回初始值，否则将返回??后面的值。</p>
+<h3 id="6、按需获取动态import"><a href="#6、按需获取动态import" class="headerlink" title="6、按需获取动态import"></a>6、按需获取动态import</h3><p>同样TypeScript 也已经有了这个运算符,当我们有如下一个对象:</p>
+<p>众所周知,ES Module是一种静态加载模块,静态体现在如下信息:</p>
+<ul>
+<li>静态模块: import/export声明只能出现在顶层作用域，不支持按需加载、懒加载</li>
+<li>静态标识: 模块标识只能是字符串字面量，不支持运行时动态计算而来的模块名</li>
+</ul>
+<p>严格的静态加载,有益于基于源码的静态分析,编译优化,但也同时存在以下的问题:</p>
+<ul>
+<li>首屏需要加载所有import引入的模块,不利于首屏优化</li>
+<li>模块较多的时候难以确定每个模块加载的含义</li>
+<li>仅在特殊情况下需要加载的模块,首次就直接加载影响性能优化.</li>
+</ul>
+<p>针对于此, ES11 添加新特性 获取动态import:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(specifier)</span><br></pre></td></tr></table></figure>
+<p>import函数传入参数模块标识specifier ,返回promise,列如以下示例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lib.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line"><span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">add</span> = add</span><br><span class="line"><span class="built_in">exports</span>.<span class="property">test</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">loadAdd</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="string">&#x27;./lib.js&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">default</span>.<span class="property">add</span>) <span class="comment">// [Function: add]</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">default</span>.<span class="property">test</span>) <span class="comment">// 1</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">loadAdd</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="7、globalThis"><a href="#7、globalThis" class="headerlink" title="7、globalThis"></a>7、globalThis</h3><p>ES11 在语言标准的层面，引入globalThis作为顶层对象。也就是说，任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this。</p>
+<p>列如:</p>
+<ul>
+<li>在浏览器中它是 window</li>
+<li>在 worker 中它是 self</li>
+<li>在 Node.js 中它是global …… 所以在ES11之后在任何情况下使用globalThis 都能拿到其顶层对象</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Anrun7</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/03/ES11/">http://example.com/2023/03/03/ES11/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">十一笔画z</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/03/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Anrun7</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ANRUN7" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:anrun7@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81class%E7%B1%BB%E7%9A%84%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">1、class类的私有变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Promise-allSettled"><span class="toc-number">2.</span> <span class="toc-text">2、Promise.allSettled</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81String-prototye-matchAll"><span class="toc-number">3.</span> <span class="toc-text">3、String.prototye.matchAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81BigInt%E4%BB%BB%E6%84%8F%E7%B2%BE%E5%BA%A6%E7%9A%84%E6%95%B4%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4、BigInt任意精度的整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E7%A9%BA%E5%80%BC%E5%90%88%E5%B9%B6%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">5、空值合并运算符??</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%8C%89%E9%9C%80%E8%8E%B7%E5%8F%96%E5%8A%A8%E6%80%81import"><span class="toc-number">6.</span> <span class="toc-text">6、按需获取动态import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81globalThis"><span class="toc-number">7.</span> <span class="toc-text">7、globalThis</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/ES11/" title="ES11的特性">ES11的特性</a><time datetime="2023-03-03T06:56:55.607Z" title="发表于 2023-03-03 14:56:55">2023-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/03/hello-world/" title="Hello World">Hello World</a><time datetime="2023-03-03T06:24:04.872Z" title="发表于 2023-03-03 14:24:04">2023-03-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/images%5CmapDepot%5CmapDepot15.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By Anrun7</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
