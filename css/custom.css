@@ -1,5 +1,19 @@
-/* Twikoo 评论样式 */
+/* 字体 */
+@font-face {
+  font-family: 'zr';
+  /* 字体名自定义即可 */
+  /* src: url('https://cdn.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/font/ZhuZiAWan.woff2'); */
+  src: url('https://npm.elemecdn.com/ethan4116-blog/lib/font/ZhuZiAWan.ttf');
+  /* 字体文件路径 */
+  font-display: swap;
+}
 
+body,
+.gitcalendar {
+  font-family: zr !important;
+}
+
+/* Twikoo 评论样式 */
 .tk-input .el-textarea__inner {
   min-height: 120px !important;
 }
@@ -40,4 +54,25 @@
       box-sizing: border-box;
   }
   
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 2em;
+  /* background-color: rgba(73, 177, 245, .2); */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(255 255 255 / .3);
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+  border-radius: 2em
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent
 }
