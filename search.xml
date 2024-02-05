@@ -70,7 +70,9 @@
       
         <tags>
             
-            <tag> npm pnpm </tag>
+            <tag> npm </tag>
+            
+            <tag> pnpm </tag>
             
         </tags>
       
